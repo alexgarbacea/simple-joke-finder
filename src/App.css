@@ -1,38 +1,104 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  padding: 3em;
+  padding-top: 10em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+input {
+  padding-inline: 1em;
+  padding-block: .5em;
+  font-size: large;
+  width: clamp(10vw, 20em, 55vw);
+  border: none;
+  border-radius: .3rem;
+  color: var(--font-color-sec);
 }
 
-@keyframes App-logo-spin {
+input:focus {
+  outline: none;
+}
+
+.dropdown-list {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 0;
+  max-height: 50vh;
+  width: clamp(11vw, 21em, 59vw);
+  transition: .3s ease-in-out;
+}
+
+.dropdown-list.open {
+  transition: .3s ease-in-out;
+  height: 50vh;
+}
+
+.dropdown-list>* {
+  background: var(--body-col-sec);
+  padding-block: .6em;
+  border-bottom: solid 1px var(--body-col-main);
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.dropdown-list>*:last-child {
+  border-radius: 0 0 .3rem .3rem;
+  border-bottom: none;
+}
+
+.dropdown-list>*:hover {
+  transition: .3s ease-in-out;
+  background-color: var(--contrast-col-main);
+}
+
+.result-wrapper {
+  margin-top: 5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.result-single {
+  background-color: var(--contrast-col-main);
+  padding: .7em;
+  border-radius: .3rem;
+  border: solid 3px var(--font-color-main);
+  font-weight: bolder;
+  width: 250px;
+  animation: grow 1s ease-in-out;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+/* Animations */
+
+@keyframes rotation {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} 
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+} 

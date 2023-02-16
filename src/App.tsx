@@ -1,24 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import Result from 'Components/Result';
+import SearchBar from 'Components/SearchBar';
+import { Joke } from 'Interfaces/JokeApiInterface';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const JOKE_API = 'https://api.chucknorris.io/jokes/random?category='
+
+  const [loading, setLoading] = useState<boolean>(false)
+  const [jokesResult, setJokesResult] = useState<string[]>([])
+  
+  const fetchJoke = (categ: string): Promise<Joke> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+          fetch(`${JOKE_API}${categ}`)
+          .then((result: Response) => {
+            if (!result.ok) return reject('Error')
+            if (result.status !== 200) return reject('Error')
+            return resolve(result.json())
+          })
+        }, 2000
+      )
+    })
+}
+
+const getJoke = (categ: string): void => {
+  setLoading(true)
+  setJokesResult([])
+  Promise.all(Array.from({ length: 5 }, () => fetchJoke(categ)
+    .then((result:Joke) => {
+      setJokesResult((prev: string[]) => (Array.from(new Set(prev).add(result.value))))
+    })
+    .catch((error: string) => {
+      setJokesResult([])
+      console.log(error)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  ))
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>JOKE FINDER</h1>
+      <SearchBar getJoke = {getJoke} />
+      {
+        loading ?
+        <span className="loader"></span> :
+        <Result data = {jokesResult} />
+      }
     </div>
   );
 }
