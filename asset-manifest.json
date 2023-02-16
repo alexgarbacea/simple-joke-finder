@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/simple-joke-finder/static/css/main.54608193.css",
-    "main.js": "/simple-joke-finder/static/js/main.b2692550.js",
+    "main.js": "/simple-joke-finder/static/js/main.f9596c05.js",
     "static/js/787.a6cde497.chunk.js": "/simple-joke-finder/static/js/787.a6cde497.chunk.js",
     "index.html": "/simple-joke-finder/index.html",
     "main.54608193.css.map": "/simple-joke-finder/static/css/main.54608193.css.map",
-    "main.b2692550.js.map": "/simple-joke-finder/static/js/main.b2692550.js.map",
+    "main.f9596c05.js.map": "/simple-joke-finder/static/js/main.f9596c05.js.map",
     "787.a6cde497.chunk.js.map": "/simple-joke-finder/static/js/787.a6cde497.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.54608193.css",
-    "static/js/main.b2692550.js"
+    "static/js/main.f9596c05.js"
   ]
 }
