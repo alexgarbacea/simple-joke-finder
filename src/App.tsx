@@ -48,7 +48,7 @@ const getJoke = (categ: string): void => {
       {
         loading ?
         <span className="loader"></span> :
-        <Result data = {jokesResult} />
+        jokesResult.length > 0 && <Result data = {jokesResult} />
       }
     </div>
   );
